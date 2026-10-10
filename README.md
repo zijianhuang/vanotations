@@ -3,9 +3,8 @@
 This project provides [visual acuity notations side by side](https://zijianhuang.github.io/vanotations/) as an alternative to traditional printed conversion tables, such as:
 
 * [Visual Acuity Ranges and Visual Acuity Notations (Colenbrander, ResearchGate)](https://www.researchgate.net/profile/August-Colenbrander/publication/255022724/figure/tbl4/AS:667833218392071@1536235255216/sual-Acuity-Ranges-and-Visual-Acuity-Notations.png)
-* [Visual Acuity Conversion Chart (Ovid)](https://www.ovid.com/journals/jrefs/abstract/00043928-200810000-00001~visual-acuity-conversion-chart)
 
-The [Visual Acuity Conversion Chart](https://zijianhuang.github.io/vanotations/) includes a dynamic converter for arbitrary VA values. 
+The [Visual Acuity Conversion Chart](https://zijianhuang.github.io/vanotations/) delivered by this project includes a dynamic converter for arbitrary VA values. 
 
 **Hints:**
 * You may save [Visual Acuity Conversion Chart](https://zijianhuang.github.io/vanotations/) to a local HTML file which can be working well locally as long as the browser supports JavaScript.
