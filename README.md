@@ -87,3 +87,7 @@ Values LogMAR 0.3 to 0.1 are of range of normal vision; values between 0.2 and 0
 Though technically you may generate a static HTML page  conforming to the functional requirements without using JavaScript, I would add some dynamic conversion features:
 1. In the last row of the table, provide a numeric input box for column Decimal, and the incremental value is 0.01;  an input box for column MAR, and the incremental value is 0.1; an input box for LogMAR, and the incremental value is 0.1; an input box of VAS, and the incremental value is 1.
 2. Whenever the user manually input a decimal value to any of the input box and press enter, the values in the other table cells of the same row will change according to the conversion functions that you have previously converted from C# code to TypeScript.
+
+## Prompt 2
+
+The code you generated is working well as expected. Please do a bit optimization. Firstly, rather than rendering the rows for LogMar values from -0.3 to 1.0 dynamically using JavaScript, I would like these rows in static HTML. Secondly, the row with  LogMar value 0.0 has the text in bold.

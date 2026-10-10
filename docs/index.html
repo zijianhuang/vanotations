@@ -70,6 +70,8 @@
   tr.moderate > * { background: #ffe44d; }
   tr.severe   > * { background: #c9e3fa; }
 
+  tr.reference > * { font-weight: 700; }
+
   tr.convert > * { background: var(--calc); border-top: 3px solid var(--head); }
   tr.convert input {
     width: 100%; max-width: 104px; padding: 7px 6px;
@@ -115,7 +117,162 @@
           <th scope="col">Decimal</th>
         </tr>
       </thead>
-      <tbody id="rows"></tbody>
+      <tbody>
+        <tr class="normal">
+          <th scope="row">-0.3</th>
+          <td>0.5</td>
+          <td>115</td>
+          <td>1/0.5</td>
+          <td>4/2</td>
+          <td>5/2.5</td>
+          <td>6/3</td>
+          <td>20/10</td>
+          <td>2.0</td>
+        </tr>
+        <tr class="normal">
+          <th scope="row">-0.2</th>
+          <td>0.63</td>
+          <td>110</td>
+          <td>1/0.63</td>
+          <td>4/2.5</td>
+          <td>5/3.2</td>
+          <td>6/3.8</td>
+          <td>20/12.5</td>
+          <td>1.6</td>
+        </tr>
+        <tr class="normal">
+          <th scope="row">-0.1</th>
+          <td>0.79</td>
+          <td>105</td>
+          <td>1/0.8</td>
+          <td>4/3.2</td>
+          <td>5/4</td>
+          <td>6/4.8</td>
+          <td>20/16</td>
+          <td>1.25</td>
+        </tr>
+        <tr class="normal reference">
+          <th scope="row">0.0</th>
+          <td>1.0</td>
+          <td>100</td>
+          <td>1/1</td>
+          <td>4/4</td>
+          <td>5/5</td>
+          <td>6/6</td>
+          <td>20/20</td>
+          <td>1.0</td>
+        </tr>
+        <tr class="normal">
+          <th scope="row">0.1</th>
+          <td>1.25</td>
+          <td>95</td>
+          <td>1/1.25</td>
+          <td>4/5</td>
+          <td>5/6.3</td>
+          <td>6/7.6</td>
+          <td>20/25</td>
+          <td>0.8</td>
+        </tr>
+        <tr class="mild">
+          <th scope="row">0.2</th>
+          <td>1.58</td>
+          <td>90</td>
+          <td>1/1.6</td>
+          <td>4/6.3</td>
+          <td>5/8</td>
+          <td>6/9.5</td>
+          <td>20/32</td>
+          <td>0.63</td>
+        </tr>
+        <tr class="mild">
+          <th scope="row">0.3</th>
+          <td>1.99</td>
+          <td>85</td>
+          <td>1/2</td>
+          <td>4/8</td>
+          <td>5/10</td>
+          <td>6/12</td>
+          <td>20/40</td>
+          <td>0.5</td>
+        </tr>
+        <tr class="mild">
+          <th scope="row">0.4</th>
+          <td>2.51</td>
+          <td>80</td>
+          <td>1/2.5</td>
+          <td>4/10</td>
+          <td>5/12.5</td>
+          <td>6/15</td>
+          <td>20/50</td>
+          <td>0.4</td>
+        </tr>
+        <tr class="mild">
+          <th scope="row">0.5</th>
+          <td>3.16</td>
+          <td>75</td>
+          <td>1/3.2</td>
+          <td>4/13</td>
+          <td>5/16</td>
+          <td>6/19</td>
+          <td>20/63</td>
+          <td>0.32</td>
+        </tr>
+        <tr class="moderate">
+          <th scope="row">0.6</th>
+          <td>3.98</td>
+          <td>70</td>
+          <td>1/4</td>
+          <td>4/16</td>
+          <td>5/20</td>
+          <td>6/24</td>
+          <td>20/80</td>
+          <td>0.25</td>
+        </tr>
+        <tr class="moderate">
+          <th scope="row">0.7</th>
+          <td>5.01</td>
+          <td>65</td>
+          <td>1/5</td>
+          <td>4/20</td>
+          <td>5/25</td>
+          <td>6/30</td>
+          <td>20/100</td>
+          <td>0.2</td>
+        </tr>
+        <tr class="moderate">
+          <th scope="row">0.8</th>
+          <td>6.3</td>
+          <td>60</td>
+          <td>1/6.3</td>
+          <td>4/25</td>
+          <td>5/32</td>
+          <td>6/38</td>
+          <td>20/125</td>
+          <td>0.16</td>
+        </tr>
+        <tr class="moderate">
+          <th scope="row">0.9</th>
+          <td>7.94</td>
+          <td>55</td>
+          <td>1/8</td>
+          <td>4/32</td>
+          <td>5/40</td>
+          <td>6/48</td>
+          <td>20/160</td>
+          <td>0.125</td>
+        </tr>
+        <tr class="severe">
+          <th scope="row">1.0</th>
+          <td>10.0</td>
+          <td>50</td>
+          <td>1/10</td>
+          <td>4/40</td>
+          <td>5/50</td>
+          <td>6/60</td>
+          <td>20/200</td>
+          <td>0.1</td>
+        </tr>
+      </tbody>
       <tfoot>
         <tr class="convert">
           <td><input id="in-logMar"  type="number" step="0.1"  inputmode="decimal" aria-label="LogMAR value to convert" placeholder="logMAR"></td>
@@ -136,6 +293,7 @@
 </main>
 
 <script>
+/* ---------- Converter (port of the C# VASConverter, plus mar2LogMAR) ---------- */
 class VASConverter {
   static logMar2FivePoint(logMar) { return 5 - logMar; }
   static logMAR2VAS(logMar)       { return 100 - logMar * 50; }
@@ -143,7 +301,7 @@ class VASConverter {
     if (decimalValue === 0) throw new Error("Decimal value cannot be zero.");
     return 1 / decimalValue;
   }
-
+  // Truncates to 2 decimals like the C# original; the 1e-9 nudge stops
   // values such as 10^0.30103 = 1.99999999999 from being cut down to 1.99.
   static logMAR2MAR(logMar) { return Math.floor(Math.pow(10, logMar) * 100 + 1e-9) / 100; }
   static vas2LogMAR(vas)    { return (100 - vas) / 50; }
@@ -156,7 +314,6 @@ class VASConverter {
 }
 
 /* ---------- Data ---------- */
-const logMars = [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0, -0.1, -0.2, -0.3];
 const SNELLEN = [
   { id: "s1", distance: 1 }, { id: "s4", distance: 4 }, { id: "s5", distance: 5 },
   { id: "s6", distance: 6 }, { id: "s20", distance: 20 },
@@ -186,12 +343,6 @@ function nice(v) {
   return +v.toPrecision(2);
 }
 
-function fmt(x, minDp, maxDp) {
-  let s = (+x.toFixed(maxDp)).toString();
-  const dp = s.includes(".") ? s.split(".")[1].length : 0;
-  if (dp < minDp) s = (+s).toFixed(minDp);
-  return s;
-}
 const snellen = (exactMar, d) => d + "/" + nice(exactMar * d);
 
 function category(logMar) {
@@ -199,32 +350,6 @@ function category(logMar) {
   if (logMar <= 0.5 + 1e-9) return { key: "mild",     label: "mild vision loss" };
   if (logMar <= 0.9 + 1e-9) return { key: "moderate", label: "moderate vision loss" };
   return { key: "severe", label: "severe vision loss" };
-}
-
-/* ---------- Static rows ---------- */
-const tbody = document.getElementById("rows");
-for (const L of [...logMars].sort((a, b) => a - b)) {
-  const v = compute(L);
-  const tr = document.createElement("tr");
-  tr.className = category(L).key;
-
-  const th = document.createElement("th");
-  th.scope = "row";
-  th.textContent = fmt(L, 1, 3);
-  tr.appendChild(th);
-
-  const cells = [
-    fmt(v.mar, 1, 2),
-    fmt(v.vas, 0, 2),
-    ...SNELLEN.map(s => snellen(v.exactMar, s.distance)),
-    fmt(nice(v.decimal), 1, 3),
-  ];
-  for (const text of cells) {
-    const td = document.createElement("td");
-    td.textContent = text;
-    tr.appendChild(td);
-  }
-  tbody.appendChild(tr);
 }
 
 /* ---------- Conversion row ---------- */
