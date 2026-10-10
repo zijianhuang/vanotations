@@ -91,3 +91,7 @@ Though technically you may generate a static HTML page  conforming to the functi
 ## Prompt 2
 
 The code you generated is working well as expected. Please do a bit optimization. Firstly, rather than rendering the rows for LogMar values from -0.3 to 1.0 dynamically using JavaScript, I would like these rows in static HTML. Secondly, the row with  LogMar value 0.0 has the text in bold.
+
+## Prompt 3
+
+Good. A little bit font adjustment needed. The bold style (weight 700) for numbers makes the text look smaller. Firstly, I would just like fixed size font good for displaying numbers, distinguishing 0, o, O, I and l etc., and the bold style won't make the text look smaller. Secondly, if possible, rather than using external fonts, use built-in fonts commonly available in Chrome, Firefox and Safari etc. So the page is self contained and having no links to external font resources.
