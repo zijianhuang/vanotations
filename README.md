@@ -10,9 +10,9 @@ The [Visual Acuity Conversion Chart](https://zijianhuang.github.io/vanotations/)
 **Hints:**
 * You may save [Visual Acuity Conversion Chart](https://zijianhuang.github.io/vanotations/) to a local HTML file which can be working well locally as long as the browser supports JavaScript.
 * Visual Acuity testing for distance vision can be done through smartphone app Eye Charts:
-<p><a href="https://apps.apple.com/au/app/ishihara-color-blind-test/id6772382532?ign-itscg=30200&amp;ign-itsct=apps_box_badge" target="_blank" style="color: rgb(13, 110, 253); display: inline-block; overflow: hidden; border-radius: 13px; width: 125px; height: 41.5px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=125x41.5&amp;releaseDate=1543449600" alt="Download on the App Store" style="height: 41.5px; border-radius: 13px; width: 125px;"></a></p>
+<p><a href="https://apps.apple.com/au/app/eye-charts/id1442509969?ign-itscg=30200&amp;ign-itsct=apps_box_badge" target="_blank" style="color: rgb(13, 110, 253); display: inline-block; overflow: hidden; border-radius: 13px; width: 125px; height: 41.5px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=125x41.5" alt="Download on the App Store" style="height: 41.5px; border-radius: 13px; width: 125px;"></a></p>
 
-<p><a href="https://play.google.com/store/apps/details?id=com.fonlow.colorblindtest" target="_blank" style="color: rgb(13, 110, 253);"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/badge_new.png"></a></p>
+<p><a href="https://play.google.com/store/apps/details?id=com.fonlow.VAC" target="_blank" style="color: rgb(13, 110, 253);"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/badge_new.png"></a></p>
 
 
 **Remarks:**
