@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visual acuity notation comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7f8;
+    --text: #1b2127;
+    --muted: #55616b;
+    --line: #aab4bb;
+    --head: #24384a;
+    --head-text: #ffffff;
+    --calc: #e8eef2;
+    --accent: #0b6e8a;
+    --error: #b3261e;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12181d; --text: #e8edf0; --muted: #9aa8b2; --line: #4a5862;
+      --head: #2f4a60; --calc: #dfe8ee; --accent: #5cc3df; --error: #ff8a80;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12181d; --text: #e8edf0; --muted: #9aa8b2; --line: #4a5862;
+    --head: #2f4a60; --calc: #dfe8ee; --accent: #5cc3df; --error: #ff8a80;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *, *::before, *::after { box-sizing: inherit; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 32px 20px 56px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .lede { margin: 0 0 20px; color: var(--muted); max-width: 62ch; }
+
+  .legend { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.95rem; }
+  .legend li { display: flex; align-items: center; gap: 8px; }
+  .swatch { width: 22px; height: 22px; border: 1px solid #7d8890; border-radius: 3px; flex: none; }
+
+  .table-wrap { overflow-x: auto; max-width: 100%; border: 1px solid var(--line); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; min-width: 820px; font-variant-numeric: tabular-nums; color: #1b2127; }
+  thead th {
+    background: var(--head); color: var(--head-text);
+    font-weight: 700; font-size: 0.95rem; line-height: 1.25;
+    padding: 10px 8px; text-align: center; vertical-align: bottom;
+    border-left: 1px solid rgba(255,255,255,0.18);
+  }
+  thead th:first-child { border-left: 0; }
+  thead th small { display: block; font-weight: 400; opacity: 0.85; font-size: 0.85rem; }
+  tbody th, tbody td {
+    padding: 8px 8px; text-align: center; font-size: 1.02rem;
+    border-top: 1px solid rgba(0,0,0,0.14); border-left: 1px solid rgba(0,0,0,0.1);
+  }
+  tbody th { font-weight: 700; border-left: 0; }
+  tr.normal   > * { background: #ffffff; }
+  tr.mild     > * { background: #fff8c2; }
+  tr.moderate > * { background: #ffe44d; }
+  tr.severe   > * { background: #c9e3fa; }
+
+  tr.convert > * { background: var(--calc); border-top: 3px solid var(--head); }
+  tr.convert input {
+    width: 100%; max-width: 104px; padding: 7px 6px;
+    font: inherit; font-variant-numeric: tabular-nums; text-align: center;
+    color: #1b2127; background: #fff;
+    border: 1.5px solid #6c7a84; border-radius: 4px;
+  }
+  tr.convert input:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  tr.convert input[aria-invalid="true"] { border-color: var(--error); outline: 2px solid var(--error); }
+
+  .status { min-height: 3em; margin: 14px 2px 0; color: var(--muted); max-width: 70ch; }
+  .status.error { color: var(--error); font-weight: 700; }
+  .swatch.normal { background: #fff; } .swatch.mild { background: #fff8c2; }
+  .swatch.moderate { background: #ffe44d; } .swatch.severe { background: #c9e3fa; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Visual acuity notations side by side</h1>
+  <p class="lede">Each row is one line of the chart, from logMAR -0.3 up to 1.0. In the last row, type a value into any box and press Enter to see it in every other notation.</p>
+
+  <ul class="legend" aria-label="Row colour legend">
+    <li><span class="swatch normal"></span>Normal vision (logMAR 0.1 and better)</li>
+    <li><span class="swatch mild"></span>Mild vision loss (0.2 to 0.5)</li>
+    <li><span class="swatch moderate"></span>Moderate vision loss (0.6 to 0.9)</li>
+    <li><span class="swatch severe"></span>Severe vision loss (1.0)</li>
+  </ul>
+
+  <div class="table-wrap">
+    <table id="va">
+      <caption class="sr-only">Visual acuity values in nine notations, with a last row for converting your own value</caption>
+      <thead>
+        <tr>
+          <th scope="col">LogMAR</th>
+          <th scope="col">MAR</th>
+          <th scope="col">VAS</th>
+          <th scope="col">Snellen<small>1 m</small></th>
+          <th scope="col">Snellen<small>4 m</small></th>
+          <th scope="col">Snellen<small>5 m</small></th>
+          <th scope="col">Snellen<small>6 m</small></th>
+          <th scope="col">Snellen<small>20 ft</small></th>
+          <th scope="col">Decimal</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+      <tfoot>
+        <tr class="convert">
+          <td><input id="in-logMar"  type="number" step="0.1"  inputmode="decimal" aria-label="LogMAR value to convert" placeholder="logMAR"></td>
+          <td><input id="in-mar"     type="number" step="0.1"  inputmode="decimal" aria-label="MAR value to convert" placeholder="MAR"></td>
+          <td><input id="in-vas"     type="number" step="1"    inputmode="decimal" aria-label="VAS value to convert" placeholder="VAS"></td>
+          <td id="out-s1"></td>
+          <td id="out-s4"></td>
+          <td id="out-s5"></td>
+          <td id="out-s6"></td>
+          <td id="out-s20"></td>
+          <td><input id="in-decimal" type="number" step="0.01" inputmode="decimal" aria-label="Decimal value to convert" placeholder="Decimal"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+</main>
+
+<script>
+class VASConverter {
+  static logMar2FivePoint(logMar) { return 5 - logMar; }
+  static logMAR2VAS(logMar)       { return 100 - logMar * 50; }
+  static decimal2MAR(decimalValue) {
+    if (decimalValue === 0) throw new Error("Decimal value cannot be zero.");
+    return 1 / decimalValue;
+  }
+
+  // values such as 10^0.30103 = 1.99999999999 from being cut down to 1.99.
+  static logMAR2MAR(logMar) { return Math.floor(Math.pow(10, logMar) * 100 + 1e-9) / 100; }
+  static vas2LogMAR(vas)    { return (100 - vas) / 50; }
+  static vas2Decimal(vas)   { return Math.pow(10, -VASConverter.vas2LogMAR(vas)); }
+  static vas2MAR(vas)       { return VASConverter.logMAR2MAR(VASConverter.vas2LogMAR(vas)); }
+  static vas2FivePoint(vas) { return VASConverter.logMar2FivePoint(VASConverter.vas2LogMAR(vas)); }
+  static calculateLogMAR(logMarBase, errorCount) { return logMarBase + 0.02 * errorCount; }
+  // Added: needed when the user types a MAR or Decimal value.
+  static mar2LogMAR(mar) { return Math.log10(mar); }
+}
+
+/* ---------- Data ---------- */
+const logMars = [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0, -0.1, -0.2, -0.3];
+const SNELLEN = [
+  { id: "s1", distance: 1 }, { id: "s4", distance: 4 }, { id: "s5", distance: 5 },
+  { id: "s6", distance: 6 }, { id: "s20", distance: 20 },
+];
+
+/* ---------- Helpers ---------- */
+function compute(logMar) {
+  const vas = VASConverter.logMAR2VAS(logMar);
+  const decimal = VASConverter.vas2Decimal(vas);
+  return {
+    logMar, vas, decimal,
+    mar: VASConverter.logMAR2MAR(logMar),
+    exactMar: VASConverter.decimal2MAR(decimal),
+  };
+}
+
+// Chart lines use preferred numbers (1.25, 1.6, 2, 2.5, 3.2, 4, 5, 6.3, 8).
+// Snap to one when within 1%, otherwise keep two significant digits.
+const PREFERRED = [1, 1.25, 1.6, 2, 2.5, 3.2, 4, 5, 6.3, 8, 10];
+function nice(v) {
+  if (!(v > 0)) return NaN;
+  const base = Math.pow(10, Math.floor(Math.log10(v)));
+  const m = v / base;
+  for (const p of PREFERRED) {
+    if (Math.abs(m - p) / p < 0.01) return +(p * base).toPrecision(3);
+  }
+  return +v.toPrecision(2);
+}
+
+function fmt(x, minDp, maxDp) {
+  let s = (+x.toFixed(maxDp)).toString();
+  const dp = s.includes(".") ? s.split(".")[1].length : 0;
+  if (dp < minDp) s = (+s).toFixed(minDp);
+  return s;
+}
+const snellen = (exactMar, d) => d + "/" + nice(exactMar * d);
+
+function category(logMar) {
+  if (logMar <= 0.1 + 1e-9) return { key: "normal",   label: "normal vision" };
+  if (logMar <= 0.5 + 1e-9) return { key: "mild",     label: "mild vision loss" };
+  if (logMar <= 0.9 + 1e-9) return { key: "moderate", label: "moderate vision loss" };
+  return { key: "severe", label: "severe vision loss" };
+}
+
+/* ---------- Static rows ---------- */
+const tbody = document.getElementById("rows");
+for (const L of [...logMars].sort((a, b) => a - b)) {
+  const v = compute(L);
+  const tr = document.createElement("tr");
+  tr.className = category(L).key;
+
+  const th = document.createElement("th");
+  th.scope = "row";
+  th.textContent = fmt(L, 1, 3);
+  tr.appendChild(th);
+
+  const cells = [
+    fmt(v.mar, 1, 2),
+    fmt(v.vas, 0, 2),
+    ...SNELLEN.map(s => snellen(v.exactMar, s.distance)),
+    fmt(nice(v.decimal), 1, 3),
+  ];
+  for (const text of cells) {
+    const td = document.createElement("td");
+    td.textContent = text;
+    tr.appendChild(td);
+  }
+  tbody.appendChild(tr);
+}
+
+/* ---------- Conversion row ---------- */
+const inputs = {
+  logMar:  document.getElementById("in-logMar"),
+  mar:     document.getElementById("in-mar"),
+  vas:     document.getElementById("in-vas"),
+  decimal: document.getElementById("in-decimal"),
+};
+const outputs = Object.fromEntries(SNELLEN.map(s => [s.id, document.getElementById("out-" + s.id)]));
+const status = document.getElementById("status");
+const names = { logMar: "LogMAR", mar: "MAR", vas: "VAS", decimal: "Decimal" };
+
+function showError(source, message) {
+  inputs[source].setAttribute("aria-invalid", "true");
+  status.textContent = message;
+  status.className = "status error";
+}
+
+function apply(source) {
+  const input = inputs[source];
+  const raw = input.valueAsNumber;
+  input.removeAttribute("aria-invalid");
+
+  if (!Number.isFinite(raw)) return showError(source, "Enter a number in the " + names[source] + " box.");
+  if ((source === "mar" || source === "decimal") && raw <= 0) {
+    return showError(source, names[source] + " must be greater than 0.");
+  }
+
+  let logMar;
+  switch (source) {
+    case "logMar":  logMar = raw; break;
+    case "vas":     logMar = VASConverter.vas2LogMAR(raw); break;
+    case "mar":     logMar = VASConverter.mar2LogMAR(raw); break;
+    case "decimal": logMar = VASConverter.mar2LogMAR(VASConverter.decimal2MAR(raw)); break;
+  }
+
+  const v = compute(logMar);
+  for (const key of Object.keys(inputs)) inputs[key].removeAttribute("aria-invalid");
+  if (source !== "logMar")  inputs.logMar.value  = +logMar.toFixed(3);
+  if (source !== "mar")     inputs.mar.value     = +v.mar.toFixed(2);
+  if (source !== "vas")     inputs.vas.value     = +v.vas.toFixed(2);
+  if (source !== "decimal") inputs.decimal.value = +v.decimal.toFixed(2);
+  for (const s of SNELLEN) outputs[s.id].textContent = snellen(v.exactMar, s.distance);
+
+  status.className = "status";
+  status.textContent = "LogMAR " + +logMar.toFixed(3) + " falls in the " + category(logMar).label + " range.";
+}
+
+for (const source of Object.keys(inputs)) {
+  inputs[source].addEventListener("keydown", e => { if (e.key === "Enter") apply(source); });
+  inputs[source].addEventListener("change", () => apply(source));
+}
+
+// Start the conversion row at 6/6 (logMAR 0).
+inputs.logMar.value = 0;
+apply("logMar");
+</script>
+</body>
+</html>
